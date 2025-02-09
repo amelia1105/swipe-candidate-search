@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
+import '../styles/Nav.css';
 
-const Nav = () => {
+function Nav() {
   const currentPage = useLocation().pathname;
 
   return (
@@ -20,9 +21,7 @@ const Nav = () => {
           <h2>
             <Link
               to='/SavedCandidates'
-              className={
-                currentPage === '/SavedCandidates' ? 'nav-link active' : 'nav-link'
-              }
+              className={currentPage === '/SavedCandidates' ? 'nav-link active' : 'nav-link'}
             >
               Potential Candidates
             </Link>
@@ -31,6 +30,6 @@ const Nav = () => {
       </ul>
     </nav>
   );
-};
+}
 
 export default Nav;
