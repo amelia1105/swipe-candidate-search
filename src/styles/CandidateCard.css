@@ -1,0 +1,69 @@
+/* General styling for the CandidateCard */
+.candidateCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px; /* Increased padding */
+    background-color: black;
+    height: 600px; /* Increased height for a bigger card */
+    width: 400px;  /* Increased width for a bigger card */
+    overflow: hidden; /* Ensure content stays within the fixed size */
+  }
+  
+  /* Styling for the image */
+  .candidateCard figure {
+    align-self: center;
+  }
+  
+  .candidateCard figure img {
+    border-radius: 50%;
+    width: 200px;  /* Increased size of the image */
+    height: 200px; /* Increased size of the image */
+    object-fit: cover; /* Ensure the image covers the circle without distorting */
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for the details section */
+  .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Prevent text from overflowing */
+  }
+  
+  .details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+  }
+  
+  .details strong {
+    color: #fff;
+  }
+  
+  /* Styling for the icons section */
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 15px;
+  }
+  
+  .icons svg:hover {
+    color: #007bff;
+  }
+  
+  /* Link styling */
+  .details a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .details a:hover {
+    text-decoration: underline;
+  }  

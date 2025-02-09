@@ -1,6 +1,7 @@
 import type React from 'react';
 import type Candidate from '../interfaces/Candidate.interface';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import '../styles/CandidateCard.css';
 
 // Utility function to get saved list from localStorage
 const getSavedList = (): Candidate[] => {
