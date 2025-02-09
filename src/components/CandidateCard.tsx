@@ -1,50 +1,28 @@
 import type React from 'react';
 import type Candidate from '../interfaces/Candidate.interface';
-import { ImCross } from 'react-icons/im';
-import { CgPlayListAdd } from 'react-icons/cg';
 
 type CandidateCardProps = {
   candidate: Candidate;
-  onNextCandidate: () => void; // Function to fetch the next candidate
+  onSavedList?: boolean;
+  updateSavedList?: () => void;
 };
 
-const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, onNextCandidate }) => {
-  const handleAccept = () => {
-    const savedList: Candidate[] = JSON.parse(localStorage.getItem('savedList') || '[]');
-    
-    if (!savedList.some((c) => c.Name === candidate.Name)) {
-      localStorage.setItem('savedList', JSON.stringify([...savedList, candidate]));
-    }
-
-    onNextCandidate(); // Move to the next candidate
-  };
-
-  const handleReject = () => {
-    onNextCandidate(); // Simply move to the next candidate without saving
-  };
+const CandidateCard: React.FC<CandidateCardProps> = ({ candidate }) => {
 
   return (
     <section className="candidateCard">
       <figure>
-        <img src={candidate.Image || ''} alt={candidate.Name || 'Unknown Candidate'} />
+        <img src={candidate.Avatar || ''} alt={candidate.Username || 'Unknown Candidate'} />
       </figure>
       <article className="details">
-        <h2>{candidate.Name || 'Unknown Name'}</h2>
-        <p>{candidate.Location || 'Unknown Location'}</p>
-        <p>{candidate.Email || 'Unknown Email'}</p>
-        <p>{candidate.Company || 'Unknown Company'}</p>
-        <p>{candidate.Bio || 'No bio available'}</p>
+        <p><strong>Name:</strong> {candidate.Name || 'Unknown name'}</p>
+        <p><strong>Username:</strong> {candidate.Username || 'Unknown username'}</p>
+        <p><strong>Location:</strong> {candidate.Location || 'Unknown location'}</p>
+        <p><strong>Email:</strong> {candidate.Email || 'N/A'}</p>
+        <p><strong>Company:</strong> {candidate.Company || 'Unknown company'}</p>
+        <p><strong>Bio:</strong> {candidate.Bio || 'No bio available'}</p> {/* Display Bio */}
+        <p><strong>Profile:</strong> <a href={candidate.HtmlUrl || '#'} target="_blank" rel="noopener noreferrer">GitHub</a></p>
       </article>
-      <aside className="icons">
-        <ImCross
-          style={{ fontSize: '40px', cursor: 'pointer', color: 'red' }}
-          onClick={handleReject} // Reject the candidate
-        />
-        <CgPlayListAdd
-          style={{ fontSize: '50px', cursor: 'pointer', color: 'green' }}
-          onClick={handleAccept} // Save the candidate
-        />
-      </aside>
     </section>
   );
 };
