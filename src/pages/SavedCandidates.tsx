@@ -17,7 +17,7 @@ const SavedCandidates = () => {
 
   return (
     <>
-      <h1>Saved Candidates</h1>
+      <h1>Potential Candidates</h1>
       <SavedCandidatesList savedCandidates={savedCandidates} updateSavedList={fetchSavedCandidates} />
     </>
   );
