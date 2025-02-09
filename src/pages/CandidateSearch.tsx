@@ -8,6 +8,7 @@ const CandidateSearch = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true); // Add loading state
   const [error, setError] = useState<string | null>(null); // Add error state
+  const [outOfCandidates, setOutOfCandidates] = useState<boolean>(false); // New state to track if all candidates are viewed
 
   // Fetch candidates from the GitHub API
   const fetchCandidates = async () => {
@@ -36,7 +37,11 @@ const CandidateSearch = () => {
   }, []);
 
   const moveToNextCandidate = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % candidates.length); // Loop back to start when we reach the end
+    if (currentIndex + 1 < candidates.length) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setOutOfCandidates(true); // We've gone through all candidates
+    }
   };
 
   return (
@@ -47,6 +52,10 @@ const CandidateSearch = () => {
         <p>Loading candidates...</p>
       ) : error ? (
         <p>{error}</p>
+      ) : candidates.length === 0 ? (
+        <p>There are no candidates available to review.</p>
+      ) : outOfCandidates ? (
+        <p>There are no more candidates to review. Please refresh the page or come back later.</p>
       ) : (
         <CandidateCard 
           candidate={candidates[currentIndex]} 
