@@ -1,0 +1,20 @@
+.savedCandidatesList table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .savedCandidatesList th, .savedCandidatesList td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .savedCandidatesList td a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .savedCandidatesList td a:hover {
+    text-decoration: underline;
+  }
+  

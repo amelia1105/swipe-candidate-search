@@ -14,13 +14,13 @@ const CandidateSearch = () => {
     try {
       const data = await searchGithub();
       const mappedCandidates = data.map((user: { name: string; login: string; location: string; avatar_url: string; email: string; html_url: string; company: string; bio: string; }) => ({
-        Name: user.name || 'Unknown name',
-        Username: user.login || 'Unknown username',
-        Location: user.location || 'Unknown location',
+        Name: user.name || 'Unknown',
+        Username: user.login || 'Unknown',
+        Location: user.location || 'Unknown',
         Avatar: user.avatar_url || 'https://via.placeholder.com/150',
         Email: user.email || 'N/A',
         HtmlUrl: user.html_url || '#',
-        Company: user.company || 'Unknown company',
+        Company: user.company || 'Unknown',
         Bio: user.bio || 'No bio available',
       }));
       setCandidates(mappedCandidates);
