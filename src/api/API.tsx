@@ -1,24 +1,28 @@
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || "TOKEN_NOT_FOUND";
+
+console.log("GitHub Token:", GITHUB_TOKEN); // Debugging
+
 const searchGithub = async () => {
   try {
     const start = Math.floor(Math.random() * 100000000) + 1;
-    // console.log(import.meta.env);
-    const response = await fetch(
-      `https://api.github.com/users?since=${start}`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-        },
-      }
-    );
-    // console.log('Response:', response);
-    const data = await response.json();
+    console.log("Fetching GitHub users...");
+
+    const response = await fetch(`https://api.github.com/users?since=${start}`, {
+      headers: GITHUB_TOKEN !== "TOKEN_NOT_FOUND" ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {},
+    });
+
+    console.log("Response:", response);
+
     if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
+      throw new Error(`GitHub API error: ${response.statusText}`);
     }
-    // console.log('Data:', data);
+
+    const data = await response.json();
+    console.log("Fetched data:", data);
+
     return data;
   } catch (err) {
-    // console.log('an error occurred', err);
+    console.error("An error occurred while fetching GitHub users:", err);
     return [];
   }
 };
@@ -36,7 +40,7 @@ const searchGithubUser = async (username: string) => {
     }
     return data;
   } catch (err) {
-    // console.log('an error occurred', err);
+    console.log('an error occurred', err);
     return {};
   }
 };
