@@ -11,16 +11,29 @@ const searchGithub = async () => {
       headers: GITHUB_TOKEN !== "TOKEN_NOT_FOUND" ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {},
     });
 
-    console.log("Response:", response);
-
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    console.log("Fetched data:", data);
+    const users = await response.json();
 
-    return data;
+    // Fetch additional details for each user
+    const detailedUsers = await Promise.all(
+      users.map(async (user: { login: string }) => {
+        const userDetailsResponse = await fetch(`https://api.github.com/users/${user.login}`, {
+          headers: GITHUB_TOKEN !== "TOKEN_NOT_FOUND" ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {},
+        });
+
+        if (!userDetailsResponse.ok) {
+          console.warn(`Failed to fetch details for ${user.login}`);
+          return null;
+        }
+
+        return await userDetailsResponse.json();
+      })
+    );
+
+    return detailedUsers.filter(user => user !== null); // Remove null values from failed requests
   } catch (err) {
     console.error("An error occurred while fetching GitHub users:", err);
     return [];
