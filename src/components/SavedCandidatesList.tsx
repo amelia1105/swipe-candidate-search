@@ -43,7 +43,7 @@ const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({
                     <img
                       src={candidate.Avatar}
                       alt={`${candidate.Name}'s avatar`}
-                      className="candidate-avatar"
+                      className="candidate-image"
                     />
                   ) : (
                     "No image available"
