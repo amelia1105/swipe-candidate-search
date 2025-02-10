@@ -1,69 +1,68 @@
-/* General styling for the CandidateCard */
-.candidateCard {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 20px; /* Increased padding */
-    background-color: black;
-    height: 600px; /* Increased height for a bigger card */
-    width: 400px;  /* Increased width for a bigger card */
-    overflow: hidden; /* Ensure content stays within the fixed size */
-  }
-  
-  /* Styling for the image */
-  .candidateCard figure {
-    align-self: center;
-  }
-  
-  .candidateCard figure img {
-    border-radius: 50%;
-    width: 200px;  /* Increased size of the image */
-    height: 200px; /* Increased size of the image */
-    object-fit: cover; /* Ensure the image covers the circle without distorting */
-    margin-bottom: 15px;
-  }
-  
-  /* Styling for the details section */
-  .details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden; /* Prevent text from overflowing */
-  }
-  
-  .details p {
-    margin: 8px 0;
-    font-size: 14px;
-    color: white;
-    text-align: center;
-  }
-  
-  .details strong {
+/* Candidate Card Styles */
+.candidate-card {
+    background-color: #000;
     color: #fff;
+    border-radius: 20px;
   }
   
-  /* Styling for the icons section */
-  .icons {
+  /* Candidate Avatar */
+  .candidate-avatar {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  /* Candidate Title */
+  .candidate-title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Candidate Text */
+  .candidate-text {
+    padding: 20px;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  /* Button Container */
+  .button-container {
+    margin-top: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 15px;
+    justify-content: space-around;
   }
   
-  .icons svg:hover {
-    color: #007bff;
+  /* General Button Styles */
+  .button-container button {
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
   }
   
-  /* Link styling */
-  .details a {
-    color: #007bff;
-    text-decoration: none;
+  /* Remove Button */
+  .reject-button {
+    background-color: red;
   }
   
-  .details a:hover {
-    text-decoration: underline;
+  .reject-button:hover {
+    transform: scale(1.1);
+    background-color: darkred !important;
+  }
+  
+  /* Save Button */
+  .save-button {
+    background-color: green;
+  }
+  
+  .save-button:hover {
+    transform: scale(1.1);
+    background-color: darkgreen !important;
   }  
