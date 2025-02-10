@@ -61,7 +61,7 @@ const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({ savedCandidat
           </tbody>
         </table>
       ) : (
-        <p>No saved candidates.</p>
+        <p>No candidates have been accepted.</p>
       )}
     </div>
   );
