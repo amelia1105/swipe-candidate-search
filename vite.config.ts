@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => {
       port: process.env.PORT ? Number(process.env.PORT) : 5173,
       open: false
     },
+    preview: {
+      allowedHosts: ['swipe-candidate-search.onrender.com']
+    },
     plugins: [react()]
   };
 });
