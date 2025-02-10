@@ -1,17 +1,28 @@
-import type React from 'react';
-import type Candidate from '../interfaces/Candidate.interface';
-import '../styles/SavedCandidatesList.css';
+import type React from "react";
+import type Candidate from "../interfaces/Candidate.interface";
+import "../styles/SavedCandidatesList.css";
+import { AiOutlineMinus } from "react-icons/ai";
+import Button from "react-bootstrap/Button";
 
 type SavedCandidatesListProps = {
   savedCandidates: Candidate[];
   updateSavedList: () => void;
 };
 
-const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({ savedCandidates, updateSavedList }) => {
+const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({
+  savedCandidates,
+  updateSavedList,
+}) => {
+  const handleRemove = (username: string) => {
+    const updatedList = savedCandidates.filter((c) => c.Username !== username);
+    localStorage.setItem("savedList", JSON.stringify(updatedList));
+    updateSavedList();
+  };
+
   return (
-    <div className="savedCandidatesList">
+    <div className="saved-candidates-list">
       {savedCandidates.length > 0 ? (
-        <table>
+        <table className="saved-table">
           <thead>
             <tr>
               <th>Avatar</th>
@@ -21,7 +32,7 @@ const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({ savedCandidat
               <th>Email</th>
               <th>Profile</th>
               <th>Company</th>
-              <th>Reject</th> {/* Column for actions like remove */}
+              <th>Reject</th>
             </tr>
           </thead>
           <tbody>
@@ -29,39 +40,41 @@ const SavedCandidatesList: React.FC<SavedCandidatesListProps> = ({ savedCandidat
               <tr key={candidate.Username}>
                 <td>
                   {candidate.Avatar ? (
-                  <img src={candidate.Avatar} alt={`${candidate.Name}'s avatar`} width="80" height="80" />
+                    <img
+                      src={candidate.Avatar}
+                      alt={`${candidate.Name}'s avatar`}
+                      className="candidate-avatar"
+                    />
                   ) : (
-                  'No image available'
+                    "No image available"
                   )}
                 </td>
-                <td>{candidate.Name || 'Unknown'}</td>
-                <td>{candidate.Username || 'Unknown'}</td>
-                <td>{candidate.Location || 'Unknown'}</td>
-                <td>{candidate.Email || 'N/A'}</td>
+                <td>{candidate.Name || "Unknown"}</td>
+                <td>{candidate.Username || "Unknown"}</td>
+                <td>{candidate.Location || "Unknown"}</td>
+                <td>{candidate.Email || "N/A"}</td>
                 <td>
-                  <a href={candidate.HtmlUrl || '#'} target="_blank" rel="noopener noreferrer">
-                  {candidate.HtmlUrl ? 'View profile' : 'No profile available'}
+                  <a
+                    href={candidate.HtmlUrl || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="profile-link"
+                  >
+                    {candidate.HtmlUrl ? "View profile" : "No profile available"}
                   </a>
                 </td>
-                <td>{candidate.Company || 'Unknown'}</td>
+                <td>{candidate.Company || "Unknown"}</td>
                 <td>
-                  <button
-                    onClick={() => {
-                      // Remove the candidate from the list
-                      const updatedList = savedCandidates.filter((c) => c.Username !== candidate.Username);
-                      localStorage.setItem('savedList', JSON.stringify(updatedList));
-                      updateSavedList();
-                    }}
-                  >
-                    -
-                  </button>
+                    <Button onClick={() => handleRemove(candidate.Username)} className="reject-button">
+                      <AiOutlineMinus />
+                    </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        <p>No candidates have been accepted.</p>
+        <p className="no-candidates">No candidates have been accepted.</p>
       )}
     </div>
   );

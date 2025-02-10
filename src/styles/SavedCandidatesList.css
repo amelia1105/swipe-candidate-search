@@ -1,20 +1,71 @@
-.savedCandidatesList table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .savedCandidatesList th, .savedCandidatesList td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  .savedCandidatesList td a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .savedCandidatesList td a:hover {
-    text-decoration: underline;
-  }
-  
+/* Saved Candidates List Container */
+.saved-candidates-list {
+  text-align: center;
+}
+
+/* Table Styles */
+.saved-table {
+  width: 100%;
+  background-color: #1e1e1e;
+}
+
+/* Table Header */
+.saved-table th {
+  text-align: center;
+}
+
+/* Table Body */
+.saved-table td {
+  padding: 10px;
+}
+
+/* Candidate Avatar */
+.candidate-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Profile Link */
+.profile-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+/* Reject Button */
+.reject-button {
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 0;
+}
+
+.reject-button:hover {
+  transform: scale(1.1);
+  background-color: darkred;
+}
+
+.reject-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* No Candidates Message */
+.no-candidates {
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 20px;
+}
