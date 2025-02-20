@@ -1,7 +1,5 @@
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || "TOKEN_NOT_FOUND";
 
-console.log("GitHub Token:", GITHUB_TOKEN); // Debugging
-
 const searchGithub = async () => {
   try {
     const start = Math.floor(Math.random() * 100000000) + 1;
