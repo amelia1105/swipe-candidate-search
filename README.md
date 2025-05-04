@@ -15,6 +15,8 @@ This project allows employers to search for potential candidates on GitHub by pr
 
 ## Link to Application
 
+**NOTE:** The Render database for this application is no longer active. While the link will still take you to the webpage, you will not be able to view candidates.
+
 https://swipe-candidate-search.onrender.com
 
 ## Installation
@@ -102,4 +104,4 @@ SOFTWARE.
 
 ## Questions
 
-For any questions about this project, please contact me by email: aebellanger@yahoo.com
+For any questions about this project, please contact me by email: ameliabalvarado@gmail.com
